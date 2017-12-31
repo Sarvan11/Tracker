@@ -4,7 +4,7 @@ import io.egen.entity.Vehicle;
 
 import java.util.List;
 
-public interface VehicleRepository {
+public interface VehicleRepository{
 
     List<Vehicle> findAll();
 
@@ -12,7 +12,7 @@ public interface VehicleRepository {
 
     Vehicle create(Vehicle vehicle);
 
-    Vehicle update(String vin, Vehicle vehicle);
+    Vehicle update(Vehicle vehicle);
 
-    void delete(String vin);
+    void delete(Vehicle vehicle);
 }

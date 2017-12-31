@@ -1,38 +1,54 @@
 package io.egen.service;
 
 import io.egen.entity.Vehicle;
+import io.egen.repository.VehicleRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 @Service
 public class VehicleServiceImpl implements VehicleService {
+
+    @Autowired
+    VehicleRepository repository;
+
     public List<Vehicle> findAll() {
 
-        Vehicle v1=new Vehicle();
-        v1.setVin("1");
-        v1.setMake("Honda");
-        v1.setModel("Bolero");
-        v1.setYear(2015);
-        v1.setRedlineRpm(5000);
-        v1.setMaxFuelVolume(15);
-        v1.setLastServiceDate("12/12/12");
-        return Arrays.asList(v1);
+    return repository.findAll();
     }
 
     public Vehicle findOne(String vin) {
-        return null;
+        Vehicle v=repository.findOne(vin);
+        if(v==null){
+            //Exception
+        }
+        return v;
     }
 
     public Vehicle create(Vehicle vehicle) {
-        return null;
+
+        Vehicle v=repository.findOne(vehicle.getVin());
+        if(v !=null) {
+            //Exception
+        }
+        return repository.create(v);
     }
 
     public Vehicle update(String vin, Vehicle vehicle) {
-        return null;
+        Vehicle v=repository.findOne(vin);
+        if(v==null){
+            //Exception
+        }
+
+        return repository.update(vehicle);
     }
 
     public void delete(String vin) {
+        Vehicle v=repository.findOne(vin);
+        if(v==null){
+            //Exception
+        }
+        repository.delete(v);
 
     }
 }
