@@ -1,37 +1,41 @@
 package io.egen.controller;
 
 import io.egen.entity.Vehicle;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import io.egen.service.VehicleService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RestController
+@RequestMapping(value = "/vehicles")
 public class VehicleController {
 
-    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @Autowired
+    VehicleService service;
+
+    @RequestMapping(method = RequestMethod.GET)
     public List<Vehicle> findAll(){
 
-        return null;
+        return service.findAll();
     }
-    @RequestMapping(method = RequestMethod.GET, value = "/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(method = RequestMethod.GET, value = "/{vin}")
     public Vehicle findOne(@PathVariable("vin") String id){
 
-        return null;
+        return service.findOne(id);
     }
-    @RequestMapping(method = RequestMethod., value = "/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public Vehicle create(){
+    @RequestMapping(method = RequestMethod.POST)
+    public Vehicle create(@RequestBody Vehicle vehicle){
 
-        return null;
+        return service.create(vehicle);
     }
+    @RequestMapping(method = RequestMethod.PUT, value = "/{vin}")
+    public Vehicle update(@PathVariable("vin") String id, @RequestBody Vehicle vehicle){
 
-    public Vehicle update(){
-
-        return null;
+        return service.update(id,vehicle);
 
     }
-
-    public Void delete(){
+    @RequestMapping(method = RequestMethod.DELETE, value = "/{vin}")
+    public void delete(@PathVariable("vin") String id){
     }
 }

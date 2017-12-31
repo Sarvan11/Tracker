@@ -1,6 +1,5 @@
 package io.egen.entity;
 
-import java.util.Date;
 
 public class Vehicle {
 
@@ -10,7 +9,7 @@ public class Vehicle {
     private Integer year;
     private Integer redlineRpm;
     private Integer maxFuelVolume;
-    private Date lastServiceDate;
+    private String lastServiceDate;
 
     public String getVin() {
         return vin;
@@ -60,11 +59,11 @@ public class Vehicle {
         this.maxFuelVolume = maxFuelVolume;
     }
 
-    public Date getLastServiceDate() {
+    public String getLastServiceDate() {
         return lastServiceDate;
     }
 
-    public void setLastServiceDate(Date lastServiceDate) {
+    public void setLastServiceDate(String lastServiceDate) {
         this.lastServiceDate = lastServiceDate;
     }
 }
