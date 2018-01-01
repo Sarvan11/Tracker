@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface VehicleService {
 
-    List<Vehicle> findAll();
+    List<Vehicle> findAllVehicles();
 
-    Vehicle findOne(String vin);
+    Vehicle findVehicleByVin(String vehicleVin);
 
-    Vehicle create(Vehicle vehicle);
+    void createVehicle(List<Vehicle> vehicleList);
 
-    Vehicle update(String vin, Vehicle vehicle);
+    Vehicle updateVehicle(String vehicleVin, Vehicle vehicle);
 
     void delete(String vin);
 }

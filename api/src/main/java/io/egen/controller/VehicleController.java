@@ -1,41 +1,48 @@
 package io.egen.controller;
 
-import io.egen.entity.Vehicle;
-import io.egen.service.VehicleService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import io.egen.entity.Vehicle;
+import io.egen.service.VehicleService;
+
+@CrossOrigin(origins = "http://mocker.egen.io", maxAge = 3600)
 @RestController
-@RequestMapping(value = "/vehicles")
+@RequestMapping(value = "vehicles")
 public class VehicleController {
 
     @Autowired
-    VehicleService service;
+    VehicleService vehicleService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<Vehicle> findAll(){
-
-        return service.findAll();
+    public List<Vehicle> findAllVehicles() {
+        return vehicleService.findAllVehicles();
     }
-    @RequestMapping(method = RequestMethod.GET, value = "/{vin}")
-    public Vehicle findOne(@PathVariable("vin") String id){
 
-        return service.findOne(id);
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
+    public Vehicle findVehicleByVin(@PathVariable("id") String vehicleVin) {
+        return vehicleService.findVehicleByVin(vehicleVin);
     }
-    @RequestMapping(method = RequestMethod.POST)
-    public Vehicle create(@RequestBody Vehicle vehicle){
 
-        return service.create(vehicle);
+    @RequestMapping(method = RequestMethod.PUT)
+    public void create(@RequestBody List<Vehicle> vehicleList) {
+        vehicleService.createVehicle(vehicleList);
     }
-    @RequestMapping(method = RequestMethod.PUT, value = "/{vin}")
-    public Vehicle update(@PathVariable("vin") String id, @RequestBody Vehicle vehicle){
 
-        return service.update(id,vehicle);
+    @RequestMapping(method = RequestMethod.PUT, value = "/{id}")
+    public Vehicle update(@PathVariable("id") String vehicleVin, @RequestBody Vehicle vehicle) {
+        return vehicleService.updateVehicle(vehicleVin, vehicle);
+    }
 
-    }
-    @RequestMapping(method = RequestMethod.DELETE, value = "/{vin}")
-    public void delete(@PathVariable("vin") String id){
-    }
+    @RequestMapping(method = RequestMethod.DELETE,value = "/{id}")
+    public void delete(@PathVariable("id") String vehicleVin){
+        vehicleService.delete(vehicleVin);
+    };
 }

@@ -1,15 +1,23 @@
 package io.egen.entity;
 
+import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 
+@Entity
+@NamedQueries({
+        @javax.persistence.NamedQuery(name = "Vehicle.getAllVehcles", query = "SELECT vehicle FROM Vehicle vehicle") })
 public class Vehicle {
-
+    @Id
     private String vin;
+
     private String make;
     private String model;
-    private Integer year;
-    private Integer redlineRpm;
-    private Integer maxFuelVolume;
-    private String lastServiceDate;
+    private int year;
+    private double redlineRpm;
+    private double maxFuelVolume;
+    private Date lastServiceDate;
 
     public String getVin() {
         return vin;
@@ -35,35 +43,42 @@ public class Vehicle {
         this.model = model;
     }
 
-    public Integer getYear() {
+    public int getYear() {
         return year;
     }
 
-    public void setYear(Integer year) {
+    public void setYear(int year) {
         this.year = year;
     }
 
-    public Integer getRedlineRpm() {
+    public double getRedlineRpm() {
         return redlineRpm;
     }
 
-    public void setRedlineRpm(Integer redlineRpm) {
+    public void setRedlineRpm(double redlineRpm) {
         this.redlineRpm = redlineRpm;
     }
 
-    public Integer getMaxFuelVolume() {
+    public double getMaxFuelVolume() {
         return maxFuelVolume;
     }
 
-    public void setMaxFuelVolume(Integer maxFuelVolume) {
+    public void setMaxFuelVolume(double maxFuelVolume) {
         this.maxFuelVolume = maxFuelVolume;
     }
 
-    public String getLastServiceDate() {
+    public Date getLastServiceDate() {
         return lastServiceDate;
     }
 
-    public void setLastServiceDate(String lastServiceDate) {
+    public void setLastServiceDate(Date lastServiceDate) {
         this.lastServiceDate = lastServiceDate;
     }
+
+    @Override
+    public String toString() {
+        return "Vehicle [vin=" + vin + ", make=" + make + ", model=" + model + ", year=" + year + ", redlineRpm="
+                + redlineRpm + ", maxFuelVolume=" + maxFuelVolume + ", lastServiceDate=" + lastServiceDate + "]";
+    }
+
 }

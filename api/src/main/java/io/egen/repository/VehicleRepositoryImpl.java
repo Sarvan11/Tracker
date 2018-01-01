@@ -3,53 +3,34 @@ package io.egen.repository;
 import io.egen.entity.Vehicle;
 import org.springframework.stereotype.Repository;
 
-import java.util.Arrays;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.util.List;
 @Repository
 public class VehicleRepositoryImpl implements VehicleRepository {
-    public List<Vehicle> findAll() {
-        Vehicle v1=new Vehicle();
-        v1.setVin("1");
-        v1.setMake("Honda");
-        v1.setModel("Bolero");
-        v1.setYear(2015);
-        v1.setRedlineRpm(5000);
-        v1.setMaxFuelVolume(15);
-        v1.setLastServiceDate("12/12/12");
+    @javax.persistence.PersistenceContext
+    private EntityManager entityManager;
 
-        Vehicle v2=new Vehicle();
-        v2.setVin("2");
-        v2.setMake("Toyota");
-        v2.setModel("Camry");
-        v2.setYear(2014);
-        v2.setRedlineRpm(9000);
-        v2.setMaxFuelVolume(17);
-        v2.setLastServiceDate("1/1/12");
-
-        return Arrays.asList(v1,v2);
+    public List<Vehicle> getVehicles() {
+        TypedQuery<Vehicle> query = entityManager.createNamedQuery("Vehicle.getAllVehcles",Vehicle.class);
+        return query.getResultList();
     }
 
-    public Vehicle findOne(String vin) {
-        Vehicle v1=new Vehicle();
-        v1.setVin("1");
-        v1.setMake("Honda");
-        v1.setModel("Bolero");
-        v1.setYear(2015);
-        v1.setRedlineRpm(5000);
-        v1.setMaxFuelVolume(15);
-        v1.setLastServiceDate("12/12/12");
-    return v1;
+    public Vehicle getVehicleByVin(String vin) {
+        return entityManager.find(Vehicle.class, vin);
     }
 
-    public Vehicle create(Vehicle vehicle) {
-        return null;
+    public void createVehicle(Vehicle vehicle) {
+        entityManager.persist(vehicle);
     }
 
     public Vehicle update(Vehicle vehicle) {
-        return null;
+        return entityManager.merge(vehicle);
     }
 
     public void delete(Vehicle vehicle) {
+        entityManager.remove(vehicle);
 
     }
 }

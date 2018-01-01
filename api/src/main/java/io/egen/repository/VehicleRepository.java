@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface VehicleRepository{
 
-    List<Vehicle> findAll();
+    void createVehicle(Vehicle vehicle);
 
-    Vehicle findOne(String vin);
+    Vehicle getVehicleByVin(String vin);
 
-    Vehicle create(Vehicle vehicle);
+    List<Vehicle> getVehicles();
 
     Vehicle update(Vehicle vehicle);
 
