@@ -1,7 +1,9 @@
 package io.egen.entity;
 
 import javax.persistence.Embeddable;
-
+/**
+ * Tires POJO class.
+ */
 @Embeddable
 public class Tires {
     private double frontLeft;

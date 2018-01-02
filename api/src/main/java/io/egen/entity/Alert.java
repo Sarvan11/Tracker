@@ -2,6 +2,9 @@ package io.egen.entity;
 
 import javax.persistence.*;
 
+/**
+ * Alerts POJO class.
+ */
 @Entity
 @NamedQueries({
         @NamedQuery(name = "Alert.getAllVehcles", query = "SELECT alert FROM Alert alert") })

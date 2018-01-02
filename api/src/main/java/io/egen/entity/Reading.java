@@ -10,7 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-
+/**
+ * Readings POJO class.
+ */
 @Entity
 @NamedQueries({ @NamedQuery(name = "Reading.findAll", query = "select reading from Reading reading"),
                 @NamedQuery(name = "Reading.findReadingByVin", query = "select reading from Reading reading where reading.vin =:paramVin") })

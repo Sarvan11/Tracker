@@ -5,7 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-
+/**
+ * Vehicle POJO class.
+ */
 @Entity
 @NamedQueries({
         @NamedQuery(name = "Vehicle.getAllVehicles", query = "SELECT vehicle FROM Vehicle vehicle") })
