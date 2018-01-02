@@ -9,11 +9,11 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 @Repository
 public class VehicleRepositoryImpl implements VehicleRepository {
-    @javax.persistence.PersistenceContext
+    @PersistenceContext
     private EntityManager entityManager;
 
     public List<Vehicle> getVehicles() {
-        TypedQuery<Vehicle> query = entityManager.createNamedQuery("Vehicle.getAllVehcles",Vehicle.class);
+        TypedQuery<Vehicle> query = entityManager.createNamedQuery("Vehicle.getAllVehicles",Vehicle.class);
         return query.getResultList();
     }
 
