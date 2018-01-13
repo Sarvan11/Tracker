@@ -6,17 +6,28 @@ import { AppComponent } from './app.component';
 import {VehicleService} from './vehicle-service/vehicle.service';
 import { VehicleDetailComponent } from './vehicle-detail/vehicle-detail.component';
 import { VehicleAlertComponent } from './vehicle-alert/vehicle-alert.component';
+import {RouterModule, Routes} from '@angular/router';
+import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
 
+const appRoutes: Routes = [
+  { path: 'vehicles', component: VehicleListComponent },
+  { path: 'vehicles/:id', component: VehicleDetailComponent },
+  {path: 'alerts', component: VehicleAlertComponent},
+  { path: '', redirectTo: '/vehicles', pathMatch: 'full' }
+  // { path: '**', component: PageNotFoundComponent }
+];
 
 @NgModule({
   declarations: [
     AppComponent,
     VehicleDetailComponent,
-    VehicleAlertComponent
+    VehicleAlertComponent,
+    VehicleListComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [VehicleService],
   bootstrap: [AppComponent]

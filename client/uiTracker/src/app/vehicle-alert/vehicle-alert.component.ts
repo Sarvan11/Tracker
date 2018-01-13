@@ -8,10 +8,15 @@ import {VehicleService} from '../vehicle-service/vehicle.service';
 })
 export class VehicleAlertComponent{
 
-  alerts;
-  constructor(vehicleService: VehicleService) {
-    vehicleService.getAlerts()
-      .subscribe(alerts => this.alerts = alerts
-      );
-  }
+  // alerts;
+  // constructor(vehicleService: VehicleService) {
+  //   vehicleService.getAlerts()
+  //     .subscribe(alerts => this.alerts = alerts
+  //     );
+  // }
+
+alerts;
+constructor(vehicleService: VehicleService){
+  this.alerts = vehicleService.getAlerts();
+}
 }

@@ -8,12 +8,7 @@ import {VehicleService} from './vehicle-service/vehicle.service';
 })
 export class AppComponent {
 
-  title= 'Car Tracker';
-  vehicles;
-  constructor(vehicleService: VehicleService) {
-    vehicleService.getVehicles()
-      .subscribe(vehicles => this.vehicles = vehicles
-      );
+  constructor(){
   }
 
 }
