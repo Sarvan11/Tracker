@@ -13,7 +13,11 @@ export class VehicleService {
 
   getVehicles(): Observable<any> {
     return this.http.get('http://mocker.egen.io/users');
-      // .map(response => JSON.parse(response))
-      // .catch(error => Observable.throw(error.statusText));
+    // .map(response => JSON.parse(response))
+    // .catch(error => Observable.throw(error.statusText));
+  }
+
+  getAlerts(): Observable<any> {
+    return this.http.get('http://mocker.egen.io/users');
   }
 }
