@@ -1,11 +1,12 @@
 <div style="text-align:center; background-color:wheat">
-  <header><br><h1>
-    Welcome to Car Tracker!
-  </h1><br>
+  <header><br>
+    <h1>
+      Welcome to Car Tracker!
+    </h1><br>
   </header>
 </div>
 <div style="text-align:center">
-  <table class="table table-striped" >
+  <table class="table table-striped">
     <thead style="background-color:grey">
     <tr>
       <th>Alert Type</th>
@@ -13,7 +14,7 @@
       <th>Time</th>
     </tr>
     </thead>
-    <tbody >
+    <tbody>
     <tr *ngFor="let alt of salts">
       <td>{{alt.alertType}}</td>
       <td>{{alt.priorityValue}}</td>
@@ -23,14 +24,17 @@
   </table>
   <hr>
   <br>
+</div>
+  <div id="head" >
+    <p>Location of this vehicle for 30 minutes.</p>
+  </div>
 
-
-
-  <agm-map [latitude]="lat" [longitude]="lng">
-    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+  <agm-map [zoom]="2">
+    <div *ngFor="let dam of malts">
+      <agm-marker [latitude]="dam.reading.latitude" [longitude]="dam.reading.longitude"></agm-marker>
+    </div>
   </agm-map>
 
-
+<div style="text-align:center">
   <p style="align-content: center">Contact: palaniappansaravana@gmail.com</p>
 </div>
-

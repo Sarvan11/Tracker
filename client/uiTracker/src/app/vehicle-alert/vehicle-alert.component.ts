@@ -8,8 +8,7 @@ import {VehicleService} from '../vehicle-service/vehicle.service';
 })
 export class VehicleAlertComponent {
 
-  lat: number = 51.678418;
-  lng: number = 7.809007;
+
 
   // alerts;
   // constructor(vehicleService: VehicleService) {
@@ -20,13 +19,14 @@ export class VehicleAlertComponent {
 
   alerts;
   bands=[];
-  nand={};
+  nands=[];
 constructor(vehicleService: VehicleService) {
   this.alerts = vehicleService.getAlerts();
 
   for (const aa of this.alerts){
      // Change time to 2000
-    if ((Date.now() - aa.reading.timestamp) <= 20000000000) {
+    if (Math.floor((Date.now() - aa.reading.timestamp)/60000) <= 120) {
+      // console.log(Date.now() - aa.reading.timestamp);
       if (aa.priorityValue === 'HIGH') {
         // this.nand='{aa.reading.vin}',1;
         if (this.bands[aa.reading.vin] === 1) {
@@ -39,17 +39,23 @@ constructor(vehicleService: VehicleService) {
 
       }
       }
+
     }
-  // this.bands.sort(function (a, b){
-  //   return( a[1] - b[1]);
-  // })
+  // this.bands.sort(function (a, b) {
+  //   console.log('hello');
+  //   return a[1] - b[1];
+  // });
+
   for (let prop in this.bands) {
     console.log(prop,this.bands[prop]);
+    this.nands.push(prop);
 
   }
-    console.log(this.bands);
-  // console.log(Object.values(this.bands));
-  }
+
+  console.log(this.bands);
+  console.log(this.nands);
+
+}
 
 }
 

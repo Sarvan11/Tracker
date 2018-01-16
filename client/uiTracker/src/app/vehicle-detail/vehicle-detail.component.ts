@@ -8,9 +8,11 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./vehicle-detail.component.css']
 })
 export class VehicleDetailComponent {
+
 alts;
 salts=[];
 id;
+malts=[];
   constructor(private route: ActivatedRoute, private vehicleService: VehicleService) {
     this.route.params.subscribe(params=>{
       console.log(params);
@@ -21,10 +23,13 @@ id;
       // console.log(this.id);
       if (tin.reading.vin === this.id.id){
         this.salts.push(tin);
-
+      if (Math.floor((Date.now() - tin.reading.timestamp)/60000) <= 30) {
+        // console.log(tin.reading.timestamp);
+        this.malts.push(tin);
+      }
       }
     }
-    console.log(this.salts);
+    console.log(this.malts);
   }
 
 
