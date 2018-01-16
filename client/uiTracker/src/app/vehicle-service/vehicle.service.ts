@@ -11,6 +11,26 @@ export class VehicleService {
   constructor(private http: HttpClient) {
 
   }
+  vehicles=[
+    {
+      "vin": "3GCRKSE30AG105585",
+      "make": "CHEVROLET",
+      "model": "SILVERADO",
+      "year": 2010,
+      "redlineRpm": 6000,
+      "maxFuelVolume": 26,
+      "lastServiceDate": 1508579719129
+    },
+    {
+      "vin": "WP1AB29P63LA60179",
+      "make": "PORSCHE",
+      "model": "CAYENNE",
+      "year": 2015,
+      "redlineRpm": 8000,
+      "maxFuelVolume": 18,
+      "lastServiceDate": "2017-03-25T17:31:25.268Z"
+    }
+  ];
   alerts= [
     {
       "alertId": 31,
@@ -1612,10 +1632,13 @@ export class VehicleService {
     }
   ]
 
-  getVehicles(): Observable<any> {
-    return this.http.get('http://localhost:8080/api/vehicles');
-    // .map(response => JSON.parse(response))
-    // .catch(error => Observable.throw(error.statusText));
+  // getVehicles(): Observable<any> {
+  //   return this.http.get('http://localhost:8080/api/vehicles');
+  //
+  // }
+
+  getVehicles(){
+    return this.vehicles;
   }
 
   // getAlerts(): Observable<any> {

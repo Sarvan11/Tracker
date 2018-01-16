@@ -9,8 +9,10 @@ import {VehicleService} from '../vehicle-service/vehicle.service';
 export class VehicleListComponent {
   vehicles;
   constructor(vehicleService: VehicleService) {
-    vehicleService.getVehicles()
-      .subscribe(vehicles => this.vehicles = vehicles
-      );
+
+    this.vehicles=vehicleService.getVehicles();
+    // vehicleService.getVehicles()
+    //   .subscribe(vehicles => this.vehicles = vehicles
+    //   );
   }
 }

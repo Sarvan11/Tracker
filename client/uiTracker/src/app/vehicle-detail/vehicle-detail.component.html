@@ -1,3 +1,36 @@
-<p>
-  vehicle-detail works!
-</p>
+<div style="text-align:center; background-color:wheat">
+  <header><br><h1>
+    Welcome to Car Tracker!
+  </h1><br>
+  </header>
+</div>
+<div style="text-align:center">
+  <table class="table table-striped" >
+    <thead style="background-color:grey">
+    <tr>
+      <th>Alert Type</th>
+      <th>Priority</th>
+      <th>Time</th>
+    </tr>
+    </thead>
+    <tbody >
+    <tr *ngFor="let alt of salts">
+      <td>{{alt.alertType}}</td>
+      <td>{{alt.priorityValue}}</td>
+      <td> {{alt.reading.timestamp | date:'medium'}}</td>
+    </tr>
+    </tbody>
+  </table>
+  <hr>
+  <br>
+
+
+
+  <agm-map [latitude]="lat" [longitude]="lng">
+    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+  </agm-map>
+
+
+  <p style="align-content: center">Contact: palaniappansaravana@gmail.com</p>
+</div>
+

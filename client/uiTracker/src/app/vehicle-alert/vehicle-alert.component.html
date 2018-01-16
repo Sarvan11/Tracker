@@ -5,7 +5,25 @@
   </header>
 </div>
 <div style="text-align:center">
-  <table class="table" >
+  <table class="table table-striped" >
+    <thead style="background-color: cadetblue">
+    <tr>
+      <th>Vin</th>
+      <th>Alerts</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let band of bands">
+      <td>{{band}}</td>
+      <!--<td>{{band.vin}}</td>-->
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div style="text-align:center">
+  <table class="table table-striped">
     <thead style="background-color: cadetblue">
     <tr>
       <th>Vin</th>
@@ -16,17 +34,18 @@
       <th>Location</th>
     </tr>
     </thead>
-    <tbody style="background-color: aquamarine">
+    <tbody>
     <tr *ngFor="let alert of alerts">
       <td>{{alert.reading.vin}}</td>
       <td>{{alert.vehicle.make}} {{alert.vehicle.model}}</td>
       <td>{{alert.alertType}}</td>
       <td> {{alert.priorityValue}}</td>
-      <td>{{alert.reading.timestamp | date: 'medium'}}</td>
+      <td>{{alert.reading.timestamp}}</td>
       <td>{{alert.reading.latitude}}, {{alert.reading.longitude}}</td>
     </tr>
     </tbody>
   </table>
+
 </div>
 <div style="text-align:center; background-color: coral">
   <footer>
