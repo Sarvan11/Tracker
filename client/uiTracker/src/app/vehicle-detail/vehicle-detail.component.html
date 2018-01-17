@@ -34,6 +34,20 @@
       <agm-marker [latitude]="dam.reading.latitude" [longitude]="dam.reading.longitude"></agm-marker>
     </div>
   </agm-map>
+<br>
+<div>
+<h5> Select the time </h5>
+</div>
+<div>
+<select  class="form-control" [(ngModel)]="swit" >
+  <option *ngFor="let char of chartss" [value]="char">{{char}} </option>
+</select>
+  <button type="submit" class="btn btn-primary" (click)="addTime(swit)">Submit</button>
+</div>
+<div [chart]="engineRPM"></div>
+<div [chart]="fue"></div>
+<div [chart]="spe"></div>
+
 
 <div style="text-align:center">
   <p style="align-content: center">Contact: palaniappansaravana@gmail.com</p>
