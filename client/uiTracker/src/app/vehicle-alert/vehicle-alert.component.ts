@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {VehicleService} from '../vehicle-service/vehicle.service';
+import {AlertService} from '../alert-service/alert.service';
 
 @Component({
   selector: 'app-vehicle-alert',
@@ -13,13 +14,13 @@ export class VehicleAlertComponent {
   bands = [];
   nands = [];
 
-  constructor(vehicleService: VehicleService) {
-    this.alerts = vehicleService.getAlerts();
+  constructor(vehicleService: VehicleService, private alertService: AlertService) {
+    // this.alerts = vehicleService.getAlerts();
 
-    //   alertService.getAlerts()
-    //     .subscribe(alerts => this.alerts = alerts,
-    // error(console.log(error)
-    //     )
+      alertService.getAlerts()
+        .subscribe(alerts => this.alerts = alerts,
+    error => console.log(error)
+        );
 
     for (const aa of this.alerts) {
       // Change time to 2000

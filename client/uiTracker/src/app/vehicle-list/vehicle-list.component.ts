@@ -11,10 +11,10 @@ export class VehicleListComponent {
 
   constructor(vehicleService: VehicleService) {
 
-    this.vehicles = vehicleService.getVehicles();
-    // vehicleService.getVehicles()
-    //   .subscribe(vehicles => this.vehicles = vehicles,
-    // error => console.log(error)
-    //  );
+    // this.vehicles = vehicleService.getVehicles();
+    vehicleService.getVehicles()
+      .subscribe(vehicles => this.vehicles = vehicles,
+    error => console.log(error)
+     );
   }
 }

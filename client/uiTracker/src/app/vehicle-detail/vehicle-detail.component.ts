@@ -2,6 +2,8 @@ import {Component, OnInit, ElementRef} from '@angular/core';
 import {VehicleService} from '../vehicle-service/vehicle.service';
 import {ActivatedRoute} from '@angular/router';
 import {Chart} from 'angular-highcharts';
+import {AlertService} from '../alert-service/alert.service';
+import {ReadingService} from '../reading-service/reading.service';
 
 @Component({
   selector: 'app-vehicle-detail',
@@ -25,23 +27,23 @@ export class VehicleDetailComponent implements OnInit {
   time = [];
   sdate = [];
 
-  constructor(private route: ActivatedRoute, private vehicleService: VehicleService) {
+  constructor(private route: ActivatedRoute, private vehicleService: VehicleService, private alertService: AlertService, private readingService: ReadingService) {
     this.route.params.subscribe(params => {
       this.id = params;
     });
 
-    //   alertService.getAlerts()
-    //     .subscribe(alts => this.alts = alts,
-    // error(console.log(error)
-    //     )
+      alertService.getAlerts()
+        .subscribe(alts => this.alts = alts,
+    error => console.log(error)
+        );
 
-    //   readingService.getReadings()
-    //     .subscribe(readings => this.readings = readings,
-    // error(console.log(error)
-    //     )
+      readingService.getReadings()
+        .subscribe(readings => this.readings = readings,
+    error => console.log(error)
+        );
 
-    this.alts = vehicleService.getAlerts();
-    this.readings = vehicleService.getReadings();
+    // this.alts = vehicleService.getAlerts();
+    // this.readings = vehicleService.getReadings();
   }
 
   ngOnInit(): any {
