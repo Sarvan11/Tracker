@@ -25,7 +25,7 @@ constructor(vehicleService: VehicleService) {
 
   for (const aa of this.alerts){
      // Change time to 2000
-    if (Math.floor((Date.now() - aa.reading.timestamp)/60000) <= 1200) {
+    if (Math.floor((Date.now() - aa.reading.timestamp)/ 60000) <= 120) {
       // console.log(Date.now() - aa.reading.timestamp);
       if (aa.priorityValue === 'HIGH') {
         // this.nand='{aa.reading.vin}',1;

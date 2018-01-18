@@ -1,13 +1,27 @@
-<div style="text-align:center; background-color:wheat">
-  <header><br>
-    <h1>
-      Welcome to Car Tracker!
-    </h1><br>
-  </header>
-</div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" [routerLink]="['']">Car Tracker!</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item ">
+        <a class="nav-item nav-link " [routerLink]="['']">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item " >
+        <a class="nav-item nav-link" [routerLink]="['/alerts']">All Alerts</a>
+      </li>
+      <li class="nav-item active" >
+        <a class="nav-item nav-link" [routerLink]="['/vehicles']">All Vehicles</a>
+      </li>
+    </ul>
+    <span class="navbar-text">
+Scroll down to see the vehicle location on map and its readings in graph    </span>
+  </div>
+</nav>
 <div style="text-align:center">
   <table class="table table-striped">
-    <thead style="background-color:grey">
+    <thead style="background-color:cadetblue">
     <tr>
       <th>Alert Type</th>
       <th>Priority</th>
@@ -26,7 +40,7 @@
   <br>
 </div>
   <div id="head" >
-    <p>Location of this vehicle for 30 minutes.</p>
+    <p>Location of this vehicle for last 30 minutes.</p>
   </div>
 
   <agm-map [zoom]="2">
@@ -35,20 +49,16 @@
     </div>
   </agm-map>
 <br>
-<div>
-<h5> Select the time </h5>
-</div>
-<div>
-<select  class="form-control" [(ngModel)]="swit" >
-  <option *ngFor="let char of chartss" [value]="char">{{char}} </option>
-</select>
-  <button type="submit" class="btn btn-primary" (click)="addTime(swit)">Submit</button>
-</div>
-<div [chart]="engineRPM"></div>
-<div [chart]="fue"></div>
+<!--<div>-->
+<!--<h5> Select the time </h5>-->
+<!--</div><br>-->
+<!--<div>-->
+<!--<select  class="form-control" [(ngModel)]="swit" >-->
+  <!--<option *ngFor="let char of chartss" [value]="char">{{char}} </option>-->
+<!--</select>-->
+  <!--<button type="submit" class="btn btn-primary" (click)="addTime(swit)">Submit</button>-->
+<!--</div>-->
+<div [chart]="eng"></div><br><br>
+<div [chart]="fue"></div><br><br>
 <div [chart]="spe"></div>
 
-
-<div style="text-align:center">
-  <p style="align-content: center">Contact: palaniappansaravana@gmail.com</p>
-</div>

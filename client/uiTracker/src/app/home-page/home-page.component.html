@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" [routerLink]="['']">Car Tracker!</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-item nav-link " [routerLink]="['']">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-item nav-link" [routerLink]="['/alerts']">All Alerts</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-item nav-link" [routerLink]="['/vehicles']">All Vehicles</a>
+      </li>
+    </ul>
+    <span class="navbar-text">
+Welcome to the Car Tracker! Select the alerts or vehicles to see more.    </span>
+  </div>
+</nav>
+<!--<div style="text-align:center; background-color: coral">-->
+  <!--<header><br><h1>-->
+    <!--Welcome to Car Tracker!-->
+  <!--</h1><br>-->
+  <!--</header>-->
+<!--</div>-->
+
+<!--<div>-->
+  <!--<a [routerLink]="['/alerts']" class="btn btn-primary">View all Alerts</a>-->
+  <!--<hr>-->
+<!--</div>-->
+
+<!--<div>-->
+  <!--<a [routerLink]="['/vehicles']" class="btn btn-primary">View all Vehicles</a>-->
+  <!--<hr>-->
+<!--</div>-->
+
+<div >
+  <img class="img-fluid" id="image" src="assets/car.jpg">
+</div>
+  <!--<a [routerLink]="['/vehicles']" class="btn btn-primary">View all Vehicles</a>-->
+  <!--<a [routerLink]="['/alerts']" class="btn btn-primary">View all Alerts</a>-->
+
+

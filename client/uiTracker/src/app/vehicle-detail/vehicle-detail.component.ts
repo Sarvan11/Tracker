@@ -1,56 +1,51 @@
-import { Component, OnInit, ElementRef  } from '@angular/core';
+import {Component, OnInit, ElementRef} from '@angular/core';
 import {VehicleService} from '../vehicle-service/vehicle.service';
 import {ActivatedRoute} from '@angular/router';
-import { Chart } from 'angular-highcharts';
+import {Chart} from 'angular-highcharts';
+
 @Component({
   selector: 'app-vehicle-detail',
   templateUrl: './vehicle-detail.component.html',
   styleUrls: ['./vehicle-detail.component.css']
 })
-export class VehicleDetailComponent implements OnInit{
-chartss=[15,30,60,120];
-engineRPM: Chart;
-fue: Chart;
-spe: Chart;
-alts;
-salts=[];
-readId=[]; //Reading of selected id
-id;
-malts=[];
-readings;
-engineRpm=[];
-fuelVolume=[];
-speed=[];
-time=[];
-sdate = [];
-swit=15;
-  constructor(private elementRef: ElementRef, private route: ActivatedRoute, private vehicleService: VehicleService) {
-    // vehicleService.getVehicles()
-    //   .subscribe(readings => this.readings = readings
-    //   );
+export class VehicleDetailComponent implements OnInit {
 
+  eng: Chart;
+  fue: Chart;
+  spe: Chart;
+  alts;
+  salts = [];
+  readId = []; //Reading of selected id
+  id;
+  malts = [];
+  readings;
+  engineRpm = [];
+  fuelVolume = [];
+  speed = [];
+  time = [];
+  sdate = [];
 
-
-    this.route.params.subscribe(params=>{
+  constructor(private route: ActivatedRoute, private vehicleService: VehicleService) {
+    this.route.params.subscribe(params => {
       console.log(params);
-      this.id=params;
+      this.id = params;
     });
 
-    this.alts= vehicleService.getAlerts();
-    for(let tin of this.alts){
+    this.alts = vehicleService.getAlerts();
+    for (let tin of this.alts) {
       // console.log(this.id);
       if (tin.reading.vin === this.id.id) {
         this.salts.push(tin);
-      if (Math.floor((Date.now() - tin.reading.timestamp) / 60000) <= 30) {
-        // console.log(tin.reading.timestamp);
-        this.malts.push(tin);
-      }
+        if (Math.floor((Date.now() - tin.reading.timestamp) / 60000) <= 30) {
+          // console.log(tin.reading.timestamp);
+          this.malts.push(tin);
+        }
       }
     }
-    // console.log(this.malts);
+    console.log(this.malts);
 
     this.readings = vehicleService.getReadings();
-    // console.log(this.readings);
+    console.log(this.readings);
     for (let read of this.readings) {
       if (read.vin === this.id.id) {
 
@@ -72,29 +67,25 @@ swit=15;
     }
 
     this.time.forEach((res) => {
-      let jsdate = new Date(res)
-      this.sdate.push(jsdate.toLocaleTimeString('en', { year: 'numeric', month: 'short', day: 'numeric'}));
+      let jsdate = new Date(res);
+      this.sdate.push(jsdate.toLocaleTimeString('en', {year: 'numeric', month: 'short', day: 'numeric'}));
       console.log(this.sdate);
     });
 
 
-
-
-  }
-  addTime(swt){
-    this.swit=swt;
   }
 
   ngOnInit() {
     this.init();
   }
+
   init() {
     let chart = new Chart({
       chart: {
         type: 'line'
       },
       xAxis: {
-        categories: this.sdate
+        categories: this.sdate,
       },
 
       title: {
@@ -110,7 +101,7 @@ swit=15;
       }
       ]
     });
-    this.engineRPM = chart;
+    this.eng = chart;
 
 
     let fue = new Chart({
@@ -129,14 +120,13 @@ swit=15;
       },
       series: [
         {
-          // color: 'blue',
+          color: 'blue',
           name: 'Fuel Volume',
           data: this.fuelVolume
         }
       ]
     });
     this.fue = fue;
-
 
 
     let spe = new Chart({

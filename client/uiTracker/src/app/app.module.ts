@@ -10,12 +10,14 @@ import { VehicleDetailComponent } from './vehicle-detail/vehicle-detail.componen
 import { VehicleAlertComponent } from './vehicle-alert/vehicle-alert.component';
 import {RouterModule, Routes} from '@angular/router';
 import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 const appRoutes: Routes = [
   { path: 'vehicles', component: VehicleListComponent },
   { path: 'vehicles/:id', component: VehicleDetailComponent },
   {path: 'alerts', component: VehicleAlertComponent},
-  { path: '', redirectTo: '/vehicles', pathMatch: 'full' }
+  {path: '', component: HomePageComponent}
+  // { path: '', redirectTo: '/vehicles', pathMatch: 'full' }
   // { path: '**', component: PageNotFoundComponent }
 ];
 
@@ -24,7 +26,8 @@ const appRoutes: Routes = [
     AppComponent,
     VehicleDetailComponent,
     VehicleAlertComponent,
-    VehicleListComponent
+    VehicleListComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,

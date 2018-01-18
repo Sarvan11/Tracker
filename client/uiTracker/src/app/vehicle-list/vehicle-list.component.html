@@ -1,14 +1,24 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center; background-color: coral">
-  <header><br><h1>
-    Welcome to Car Tracker!
-  </h1><br>
-  </header>
-</div>
-<div>
-<a [routerLink]="['/alerts']" class="btn btn-primary">Alerts</a>
-  <hr>
-</div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" [routerLink]="['']">Car Tracker!</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item ">
+        <a class="nav-item nav-link " [routerLink]="['']">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item" >
+        <a class="nav-item nav-link" [routerLink]="['/alerts']">All Alerts</a>
+      </li>
+      <li class="nav-item active" >
+        <a class="nav-item nav-link" [routerLink]="['/vehicles']">All Vehicles</a>
+      </li>
+    </ul>
+    <span class="navbar-text">
+ Select on a particular vin to see the detailed view of that car!    </span>
+  </div>
+</nav>
 <div style="text-align:center">
   <table class="table table-striped" >
     <thead style="background-color: cadetblue">
@@ -32,10 +42,4 @@
     </tr>
     </tbody>
   </table>
-</div>
-<div style="text-align:center; background-color: coral">
-  <footer>
-    Contact: palaniappansaravana@gmail.com
-  </footer>
-</div>
-
+</div><hr>
