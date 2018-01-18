@@ -1,5 +1,4 @@
 import {Component, OnInit, ElementRef} from '@angular/core';
-import {VehicleService} from '../vehicle-service/vehicle.service';
 import {ActivatedRoute} from '@angular/router';
 import {Chart} from 'angular-highcharts';
 import {AlertService} from '../alert-service/alert.service';
@@ -15,38 +14,35 @@ export class VehicleDetailComponent implements OnInit {
   eng: Chart;
   fue: Chart;
   spe: Chart;
-  alts;
+  alts=[];
   salts = [];
   readId = [];
   id;
   malts = [];
-  readings;
+  readings=[];
   engineRpm = [];
   fuelVolume = [];
   speed = [];
   time = [];
   sdate = [];
 
-  constructor(private route: ActivatedRoute, private vehicleService: VehicleService, private alertService: AlertService, private readingService: ReadingService) {
+  constructor(private route: ActivatedRoute, alertService: AlertService, readingService: ReadingService) {
+    alertService.getAlerts()
+      .subscribe(alts => this.alts = alts,
+        error => console.log(error)
+      );
+console.log(this.alts)
+    readingService.getReadings()
+      .subscribe(readings => this.readings = readings,
+        error => console.log(error)
+      );
+
     this.route.params.subscribe(params => {
       this.id = params;
     });
 
-      alertService.getAlerts()
-        .subscribe(alts => this.alts = alts,
-    error => console.log(error)
-        );
 
-      readingService.getReadings()
-        .subscribe(readings => this.readings = readings,
-    error => console.log(error)
-        );
 
-    // this.alts = vehicleService.getAlerts();
-    // this.readings = vehicleService.getReadings();
-  }
-
-  ngOnInit(): any {
     for (let tin of this.alts) {
       if (tin.reading.vin === this.id.id) {
         this.salts.push(tin);
@@ -80,6 +76,10 @@ export class VehicleDetailComponent implements OnInit {
       let jsdate = new Date(res);
       this.sdate.push(jsdate.toLocaleTimeString('en', {year: 'numeric', month: 'short', day: 'numeric'}));
     });
+  }
+
+  ngOnInit(): any {
+
 
 
     this.init();

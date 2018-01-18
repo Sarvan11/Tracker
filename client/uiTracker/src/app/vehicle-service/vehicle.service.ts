@@ -12,9 +12,9 @@ export class VehicleService {
   }
 
   getVehicles(): Observable<any> {
-    return this.http.get('http://localhost:8080/api/vehicles')
-      .map(response => response)
-      .catch(error => Observable.throw(error.statusText));
+    return this.http.get('http://localhost:8080/api/vehicles');
+      // .map(response => response)
+      // .catch(error => Observable.throw(error.statusText));
   }
 }
 

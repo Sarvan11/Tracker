@@ -12,12 +12,13 @@ export class VehicleListComponent implements OnInit {
   constructor(vehicleService: VehicleService) {
 
     vehicleService.getVehicles()
-      .subscribe(vehicles => this.vehicles = vehicles,
-    error => console.log(error)
+      .subscribe(vehicles => this.vehicles = vehicles
+    // error => console.log(error)
      );
+
+    console.log(this.vehicles);
   }
 
   ngOnInit() {
-
   }
 }
