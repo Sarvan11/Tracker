@@ -15,7 +15,7 @@ export class VehicleDetailComponent implements OnInit {
   spe: Chart;
   alts;
   salts = [];
-  readId = []; //Reading of selected id
+  readId = [];
   id;
   malts = [];
   readings;
@@ -27,31 +27,39 @@ export class VehicleDetailComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private vehicleService: VehicleService) {
     this.route.params.subscribe(params => {
-      console.log(params);
       this.id = params;
     });
 
+    //   alertService.getAlerts()
+    //     .subscribe(alts => this.alts = alts,
+    // error(console.log(error)
+    //     )
+
+    //   readingService.getReadings()
+    //     .subscribe(readings => this.readings = readings,
+    // error(console.log(error)
+    //     )
+
     this.alts = vehicleService.getAlerts();
+    this.readings = vehicleService.getReadings();
+  }
+
+  ngOnInit(): any {
     for (let tin of this.alts) {
-      // console.log(this.id);
       if (tin.reading.vin === this.id.id) {
         this.salts.push(tin);
         if (Math.floor((Date.now() - tin.reading.timestamp) / 60000) <= 30) {
-          // console.log(tin.reading.timestamp);
           this.malts.push(tin);
         }
       }
     }
-    console.log(this.malts);
 
-    this.readings = vehicleService.getReadings();
-    console.log(this.readings);
+
     for (let read of this.readings) {
       if (read.vin === this.id.id) {
 
         this.engineRpm.push(read.engineRpm);
         this.readId.push(read);
-        console.log('hello');
       }
     }
 
@@ -69,13 +77,9 @@ export class VehicleDetailComponent implements OnInit {
     this.time.forEach((res) => {
       let jsdate = new Date(res);
       this.sdate.push(jsdate.toLocaleTimeString('en', {year: 'numeric', month: 'short', day: 'numeric'}));
-      console.log(this.sdate);
     });
 
 
-  }
-
-  ngOnInit() {
     this.init();
   }
 

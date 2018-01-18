@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {VehicleService} from '../vehicle-service/vehicle.service';
 
 @Component({
@@ -8,11 +8,13 @@ import {VehicleService} from '../vehicle-service/vehicle.service';
 })
 export class VehicleListComponent {
   vehicles;
+
   constructor(vehicleService: VehicleService) {
 
-    this.vehicles=vehicleService.getVehicles();
+    this.vehicles = vehicleService.getVehicles();
     // vehicleService.getVehicles()
-    //   .subscribe(vehicles => this.vehicles = vehicles
-    //   );
+    //   .subscribe(vehicles => this.vehicles = vehicles,
+    // error => console.log(error)
+    //  );
   }
 }
