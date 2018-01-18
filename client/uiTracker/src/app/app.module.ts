@@ -11,6 +11,8 @@ import { VehicleAlertComponent } from './vehicle-alert/vehicle-alert.component';
 import {RouterModule, Routes} from '@angular/router';
 import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import {AlertService} from './alert-service/alert.service';
+import {ReadingService} from './reading-service/reading.service';
 
 const appRoutes: Routes = [
   { path: 'vehicles', component: VehicleListComponent },
@@ -37,7 +39,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [VehicleService],
+  providers: [VehicleService,AlertService,ReadingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
