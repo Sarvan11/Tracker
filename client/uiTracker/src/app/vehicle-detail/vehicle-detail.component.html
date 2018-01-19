@@ -3,7 +3,7 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse">
+  <div class="collapse navbar-collapse" >
     <ul class="navbar-nav mr-auto">
       <li class="nav-item ">
         <a class="nav-item nav-link " [routerLink]="['']">Home <span class="sr-only">(current)</span></a>
@@ -19,17 +19,18 @@
 Scroll down to see the vehicle location on map and its readings in graph    </span>
   </div>
 </nav>
+
 <div style="text-align:center">
   <table class="table table-striped">
     <thead style="background-color:cadetblue">
     <tr>
-      <th>Alert Type</th>
+      <th>Alert Type </th>
       <th>Priority</th>
       <th>Time</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let alt of salts">
+    <tr *ngFor="let alt of filteredAlerts">
       <td>{{alt.alertType}}</td>
       <td>{{alt.priorityValue}}</td>
       <td> {{alt.reading.timestamp | date:'medium'}}</td>
@@ -44,7 +45,7 @@ Scroll down to see the vehicle location on map and its readings in graph    </sp
   </div>
 
   <agm-map [zoom]="2">
-    <div *ngFor="let dam of malts">
+    <div *ngFor="let dam of filteredTime">
       <agm-marker [latitude]="dam.reading.latitude" [longitude]="dam.reading.longitude"></agm-marker>
     </div>
   </agm-map>
@@ -58,7 +59,7 @@ Scroll down to see the vehicle location on map and its readings in graph    </sp
 <!--</select>-->
   <!--<button type="submit" class="btn btn-primary" (click)="addTime(swit)">Submit</button>-->
 <!--</div>-->
-<div [chart]="eng"></div><br><br>
-<div [chart]="fue"></div><br><br>
-<div [chart]="spe"></div>
+<div [chart]="engineRpm_chart"></div><br><br>
+<div [chart]="fuel_chart"></div><br><br>
+<div [chart]="speed_chart"></div>
 

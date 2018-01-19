@@ -11,53 +11,61 @@ import {ReadingService} from '../reading-service/reading.service';
 })
 export class VehicleDetailComponent implements OnInit {
 
-  eng: Chart;
-  fue: Chart;
-  spe: Chart;
-  alts=[];
-  salts = [];
+  engineRpm_chart: Chart;
+  fuel_chart: Chart;
+  speed_chart: Chart;
+  allAlerts=[];
+  allReadings=[];
+  filteredAlerts = [];
   readId = [];
-  id;
-  malts = [];
-  readings=[];
+  detail_id;
+  filteredTime = [];
   engineRpm = [];
   fuelVolume = [];
   speed = [];
   time = [];
   sdate = [];
 
-  constructor(private route: ActivatedRoute, alertService: AlertService, readingService: ReadingService) {
-    alertService.getAlerts()
-      .subscribe(alts => this.alts = alts,
-        error => console.log(error)
-      );
-console.log(this.alts)
-    readingService.getReadings()
-      .subscribe(readings => this.readings = readings,
-        error => console.log(error)
-      );
+  constructor(private route: ActivatedRoute, private alertService: AlertService, private readingService: ReadingService) {
+  }
+
+  ngOnInit(): any {
 
     this.route.params.subscribe(params => {
-      this.id = params;
+      this.detail_id = params;
+      console.log(this.detail_id);
     });
 
+    this.alertService.getAlerts()
+      .subscribe(alts =>  this.allAlerts = alts,
+        error => console.log(error)
+        );
+    console.log(this.allAlerts);
+
+    this.readingService.getReadings()
+      .subscribe(readings => this.allReadings = readings,
+        error => console.log(error)
+      );
+    console.log(this.allReadings);
 
 
-    for (let tin of this.alts) {
-      if (tin.reading.vin === this.id.id) {
-        this.salts.push(tin);
+
+    for (let tin of this.allAlerts) {
+      if (tin.reading.vin === this.detail_id.id) {
+        this.filteredAlerts.push(tin);
         if (Math.floor((Date.now() - tin.reading.timestamp) / 60000) <= 30) {
-          this.malts.push(tin);
+          this.filteredTime.push(tin);
         }
       }
     }
 
 
-    for (let read of this.readings) {
-      if (read.vin === this.id.id) {
+    for (let read of this.allReadings) {
+      if (read.vin === this.detail_id.id) {
 
         this.engineRpm.push(read.engineRpm);
         this.readId.push(read);
+        console.log(read);
       }
     }
 
@@ -76,11 +84,6 @@ console.log(this.alts)
       let jsdate = new Date(res);
       this.sdate.push(jsdate.toLocaleTimeString('en', {year: 'numeric', month: 'short', day: 'numeric'}));
     });
-  }
-
-  ngOnInit(): any {
-
-
 
     this.init();
   }
@@ -107,10 +110,10 @@ console.log(this.alts)
       }
       ]
     });
-    this.eng = chart;
+    this.engineRpm_chart = chart;
 
 
-    let fue = new Chart({
+    let fuels = new Chart({
       chart: {
         type: 'line'
       },
@@ -132,10 +135,10 @@ console.log(this.alts)
         }
       ]
     });
-    this.fue = fue;
+    this.fuel_chart = fuels;
 
 
-    let spe = new Chart({
+    let speeds = new Chart({
       chart: {
         type: 'line'
       },
@@ -157,7 +160,10 @@ console.log(this.alts)
         }
       ]
     });
-    this.spe = spe;
+    this.speed_chart = speeds;
   }
-
+  // assignReading(fat){
+  //   // this.fate= fat;
+  //   console.log('hello');
+  // }
 }

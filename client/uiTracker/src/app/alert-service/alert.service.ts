@@ -10,7 +10,7 @@ export class AlertService {
   constructor(private http: HttpClient) {}
 
   getAlerts(): Observable<any> {
-    return this.http.get('http://localhost:8080/api/vehicles')
+    return this.http.get('http://localhost:8080/api/alerts')
       .map(response => response)
       .catch(error => Observable.throw(error.statusText));
   }

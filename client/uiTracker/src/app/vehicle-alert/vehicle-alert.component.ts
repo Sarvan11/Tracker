@@ -10,29 +10,29 @@ import {AlertService} from '../alert-service/alert.service';
 export class VehicleAlertComponent implements OnInit {
 
 
-  alerts=[];
-  bands = [];
-  nands = [];
+  alerts = [];
+  alertCount = [];
+  filterCount = [];
 
-  constructor(vehicleService: VehicleService, private alertService: AlertService) {
-    // this.alerts = vehicleService.getAlerts();
+  constructor(private alertService: AlertService) {
+  }
 
-    alertService.getAlerts()
+  ngOnInit() {
+
+    this.alertService.getAlerts()
       .subscribe(alerts => this.alerts = alerts,
         error => console.log(error)
       );
 
-    for (const aa of this.alerts) {
+    for (let aa of this.alerts) {
       // Change time to 2000
       if (Math.floor((Date.now() - aa.reading.timestamp) / 60000) <= 120) {
-        // console.log(Date.now() - aa.reading.timestamp);
         if (aa.priorityValue === 'HIGH') {
-          // this.nand='{aa.reading.vin}',1;
-          if (this.bands[aa.reading.vin] === 1) {
-            this.bands[aa.reading.vin] = this.bands[aa.reading.vin] + 1;
+          if (this.alertCount[aa.reading.vin] === 1) {
+            this.alertCount[aa.reading.vin] = this.alertCount[aa.reading.vin] + 1;
 
           } else {
-            this.bands[aa.reading.vin] = 1;
+            this.alertCount[aa.reading.vin] = 1;
 
           }
 
@@ -45,16 +45,11 @@ export class VehicleAlertComponent implements OnInit {
     //   return a[1] - b[1];
     // });
 
-    for (let prop in this.bands) {
-      console.log(prop, this.bands[prop]);
-      this.nands.push(prop);
+    for (let prop in this.alertCount) {
+      console.log(prop, this.alertCount[prop]);
+      this.filterCount.push(prop);
 
     }
   }
-
-  ngOnInit(): any {
-
-
-    }
 }
 
