@@ -1,0 +1,65 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" [routerLink]="['']">Car Tracker!</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item ">
+        <a class="nav-item nav-link " [routerLink]="['']">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-item nav-link" [routerLink]="['/alerts']">All Alerts</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-item nav-link" [routerLink]="['/vehicles']">All Vehicles</a>
+      </li>
+    </ul>
+    <span class="navbar-text">
+      All the vehicles and number of their alerts within TWO hours are displayed here.
+    </span>
+  </div>
+</nav>
+
+<div style="text-align:center">
+  <table class="table table-striped">
+    <thead style="background-color: cadetblue">
+    <tr>
+      <th>Vin</th>
+      <th>Alerts</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let ban of filterCount">
+      <td>{{ban}}</td>
+      <td>{{alertCount[ban]}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<!--<div style="text-align:center">-->
+  <!--<table class="table table-striped">-->
+    <!--<thead style="background-color: cadetblue">-->
+    <!--<tr>-->
+      <!--<th>Vin</th>-->
+      <!--<th>Car</th>-->
+      <!--<th>Alert Type</th>-->
+      <!--<th>Priority</th>-->
+      <!--<th>Time</th>-->
+      <!--<th>Location</th>-->
+    <!--</tr>-->
+    <!--</thead>-->
+    <!--<tbody>-->
+    <!--<tr *ngFor="let alert of alerts">-->
+      <!--<td>{{alert.reading.vin}}</td>-->
+      <!--<td>{{alert.vehicle.make}} {{alert.vehicle.model}}</td>-->
+      <!--<td>{{alert.alertType}}</td>-->
+      <!--<td> {{alert.priorityValue}}</td>-->
+      <!--<td>{{alert.reading.timestamp}}</td>-->
+      <!--<td>{{alert.reading.latitude}}, {{alert.reading.longitude}}</td>-->
+    <!--</tr>-->
+    <!--</tbody>-->
+  <!--</table>-->
+<!--</div>-->
+

@@ -1,0 +1,65 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" [routerLink]="['']">Car Tracker!</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" >
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item ">
+        <a class="nav-item nav-link " [routerLink]="['']">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item " >
+        <a class="nav-item nav-link" [routerLink]="['/alerts']">All Alerts</a>
+      </li>
+      <li class="nav-item active" >
+        <a class="nav-item nav-link" [routerLink]="['/vehicles']">All Vehicles</a>
+      </li>
+    </ul>
+    <span class="navbar-text">
+Scroll down to see the vehicle location on map and its readings in graph    </span>
+  </div>
+</nav>
+
+<div style="text-align:center">
+  <table class="table table-striped">
+    <thead style="background-color:cadetblue">
+    <tr>
+      <th>Alert Type </th>
+      <th>Priority</th>
+      <th>Time</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let alt of filteredAlerts">
+      <td>{{alt.alertType}}</td>
+      <td>{{alt.priorityValue}}</td>
+      <td> {{alt.reading.timestamp | date:'medium'}}</td>
+    </tr>
+    </tbody>
+  </table>
+  <hr>
+  <br>
+</div>
+  <div id="head" >
+    <p>Location of this vehicle for last 30 minutes.</p>
+  </div>
+
+  <agm-map [zoom]="2">
+    <div *ngFor="let dam of filteredTime">
+      <agm-marker [latitude]="dam.reading.latitude" [longitude]="dam.reading.longitude"></agm-marker>
+    </div>
+  </agm-map>
+<br>
+<!--<div>-->
+<!--<h5> Select the time </h5>-->
+<!--</div><br>-->
+<!--<div>-->
+<!--<select  class="form-control" [(ngModel)]="swit" >-->
+  <!--<option *ngFor="let char of chartss" [value]="char">{{char}} </option>-->
+<!--</select>-->
+  <!--<button type="submit" class="btn btn-primary" (click)="addTime(swit)">Submit</button>-->
+<!--</div>-->
+<div [chart]="engineRpm_chart"></div><br><br>
+<div [chart]="fuel_chart"></div><br><br>
+<div [chart]="speed_chart"></div>
+
